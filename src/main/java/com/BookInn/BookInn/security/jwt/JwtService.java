@@ -1,5 +1,6 @@
 package com.BookInn.BookInn.security.jwt;
 
+import com.BookInn.BookInn.security.user.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -19,11 +20,11 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
-    public String getToken(User user) {
+    public String getToken(Users user) {
         return getToken(new HashMap<>(), user);
     }
 
-    private String getToken(HashMap<String,Object> extraClaims, User user) {
+    private String getToken(HashMap<String,Object> extraClaims, Users user) {
         return Jwts.builder()
                 .claims(extraClaims)
                 .claim("userId", user.getId())
